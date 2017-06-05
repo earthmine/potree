@@ -12,7 +12,7 @@ var os = require('os');
 var File = gutil.File;
 
 //We need this one for the in-built webserver
-var connect = require('gulp-connect');
+var webserver = require('gulp-webserver');
 
 
 var paths = {
@@ -176,7 +176,12 @@ gulp.task('watch', function() {
 // For development, it is now possible to use 'gulp webserver'
 // from the command line to start the server (default port is 8080)
 gulp.task('webserver', function() {
-  connect.server();
+  gulp.src('./')
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: true,
+      open: true
+    }));
 });
 
 
